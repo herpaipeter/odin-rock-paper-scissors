@@ -35,19 +35,26 @@ function getWinner(player1, player2) {
     return undefined;
 }
 
-function playRound() {
-    let computerSelection = computerPlay()
-    let playerSelection = prompt('Choose wisely rock-paper-scissors!');
+function playRound(playerSelection) {
+    let computerSelection = computerPlay();
     playerSelection = normalizeGuess(playerSelection);
+    console.log(playerSelection);
     let winner = getWinner(computerSelection, playerSelection);
     switch (winner) {
         case 0:
             return `Draw! ${computerSelection} == ${playerSelection}`;
         case 1:
-            return `You Win! ${playerSelection} beats ${computerSelection}`
-        case 2:
             return `You Lose! ${computerSelection} beats ${playerSelection}`
+        case 2:
+            return `You Win! ${playerSelection} beats ${computerSelection}`
         default:
             return 'Something went wrong! By the way, YOU LOSE!';
     }
 }
+
+function buttonClick(button) {
+    console.log(playRound(button.id));
+}
+
+const buttons = document.querySelectorAll("#buttons > button");
+buttons.forEach((b) => b.addEventListener('click', () => buttonClick(b)));
