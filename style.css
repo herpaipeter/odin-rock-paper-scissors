@@ -1,5 +1,7 @@
 body {
     background-color: #EAE2B7;
+    font-size: 20px;
+    font-family: roboto sans-serif;
 }
 
 #content {
@@ -9,8 +11,6 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-size: 20px;
-    font-family: roboto sans-serif;
 }
 
 #buttons {
