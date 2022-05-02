@@ -51,13 +51,3 @@ function playRound() {
             return 'Something went wrong! By the way, YOU LOSE!';
     }
 }
-
-function game() {
-    for (let i = 0; i < 5; i++) {
-        console.log(playRound());
-    }
-}
-
-game();
-
-
