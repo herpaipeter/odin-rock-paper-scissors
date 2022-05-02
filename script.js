@@ -42,18 +42,46 @@ function playRound(playerSelection) {
     let winner = getWinner(computerSelection, playerSelection);
     switch (winner) {
         case 0:
-            return `Draw! ${computerSelection} == ${playerSelection}`;
+            return 0;
         case 1:
-            return `You Lose! ${computerSelection} beats ${playerSelection}`
+            return -1;
         case 2:
-            return `You Win! ${playerSelection} beats ${computerSelection}`
-        default:
-            return 'Something went wrong! By the way, YOU LOSE!';
+            return 1;
     }
 }
 
+const roundSpan = document.querySelector("#round > span");
+const playerScSpan = document.querySelector("#player-sc > span");
+const computerScSpan = document.querySelector("#computer-sc > span");
+const messageDiv = document.querySelector("#message");
+
+let round = 0;
+let playerScore = 0;
+let computerScore = 0;
+
 function buttonClick(button) {
-    console.log(playRound(button.id));
+    let playerWin = playRound(button.id);
+    roundSpan.textContent = ++round;
+    switch (playerWin) {
+        case 0:
+            playerScSpan.textContent = ++playerScore;
+            computerScSpan.textContent = ++computerScore;
+            break;
+        case -1:
+            computerScSpan.textContent = ++computerScore;
+            break;
+        case 1:
+            playerScSpan.textContent = ++playerScore;
+            break;
+    }
+    if (5 <= playerScore || 5 <= computerScore) {
+        messageDiv.textContent = `The winner is THE ${5 <= playerScore ? "HUMAN" : "COMPUTER"}`;
+        round = 0;
+        playerScore = 0;
+        computerScore = 0;
+    } else {
+        messageDiv.textContent = "";
+    }
 }
 
 const buttons = document.querySelectorAll("#buttons > button");
