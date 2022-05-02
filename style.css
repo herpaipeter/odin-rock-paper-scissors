@@ -10,12 +10,13 @@ body {
     justify-content: center;
     align-items: center;
     font-size: 20px;
-    font-family: roboto;
+    font-family: roboto sans-serif;
 }
 
 #buttons {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    width: 500px;
 }
 
 #buttons > button {
@@ -34,11 +35,24 @@ body {
     color: #003049;
 }
 
+#round {
+    color: #D62828 !important;
+    font-size: 30px;
+    font-weight: bold;
+}
+
 #result {
     text-align: center;
+    border: 2px dashed #003049;
+    width: 500px;
 }
 
 #result > div {
     margin: 8px;
     color: #003049;
+}
+
+.winner {
+    color: #D62828 !important;
+    font-weight: bold;
 }

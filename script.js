@@ -55,33 +55,42 @@ const playerScSpan = document.querySelector("#player-sc > span");
 const computerScSpan = document.querySelector("#computer-sc > span");
 const messageDiv = document.querySelector("#message");
 
+const WINNER_ROUNDS = 5;
 let round = 0;
 let playerScore = 0;
 let computerScore = 0;
 
-function buttonClick(button) {
-    let playerWin = playRound(button.id);
-    roundSpan.textContent = ++round;
+function updateResultTexts(playerWin) {
     switch (playerWin) {
         case 0:
+            messageDiv.textContent = "Draw";
             playerScSpan.textContent = ++playerScore;
             computerScSpan.textContent = ++computerScore;
             break;
         case -1:
+            messageDiv.textContent = "Computer wins";
             computerScSpan.textContent = ++computerScore;
             break;
         case 1:
+            messageDiv.textContent = "Player wins";
             playerScSpan.textContent = ++playerScore;
             break;
     }
-    if (5 <= playerScore || 5 <= computerScore) {
-        messageDiv.textContent = `The winner is THE ${5 <= playerScore ? "HUMAN" : "COMPUTER"}`;
+    if (WINNER_ROUNDS <= playerScore || WINNER_ROUNDS <= computerScore) {
+        messageDiv.textContent = `The winner is ${WINNER_ROUNDS <= playerScore ? "YOU" : "THE COMPUTER"}!`;
+        messageDiv.classList.add("winner");
         round = 0;
         playerScore = 0;
         computerScore = 0;
     } else {
-        messageDiv.textContent = "";
+        messageDiv.classList.remove("winner");
     }
+}
+
+function buttonClick(button) {
+    let playerWin = playRound(button.id);
+    roundSpan.textContent = ++round;
+    updateResultTexts(playerWin);
 }
 
 const buttons = document.querySelectorAll("#buttons > button");
